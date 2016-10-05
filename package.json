@@ -1,0 +1,22 @@
+{
+  "name": "movie",
+  "version": "1.0.0",
+  "description": "Sample online movie streaming service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kreyo/sample-cinema.git"
+  },
+  "author": "Matthew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kreyo/sample-cinema/issues"
+  },
+  "homepage": "https://github.com/Kreyo/sample-cinema#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
