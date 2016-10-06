@@ -11,6 +11,7 @@ const databaseName = 'movies';
 var mongo = require('./database/mongo');
 var connection = new mongo(databaseHost, databasePort, databaseName);
 
+app.use(express.static(__dirname + '/views'));
 
 /**
  * Home page actions
