@@ -25,7 +25,7 @@ app.use('', homeRoutes);
  * Movie Details actions
  */
 let detailsRoutes = require('./routes/details');
-app.use('/details', detailsRoutes);
+app.use('/movie', detailsRoutes);
 
 /**
  * User routes actions

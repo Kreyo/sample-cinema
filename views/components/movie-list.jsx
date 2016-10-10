@@ -1,4 +1,5 @@
 import React from 'react';
+import {MovieThumbnail} from './movie-thumbnail';
 
 export class MovieList extends React.Component {
 
@@ -25,7 +26,9 @@ export class MovieList extends React.Component {
         return(
             <div className="movies">
                 {this.state.movies.map((movie) => (
-                    <div className="col-md-4" key={movie.id}>{movie.Title}</div>
+                    <div className="col-md-4" key={movie._id}>
+                        <MovieThumbnail name={movie.Title} id={movie._id} image={movie.Poster} date={movie.Year}/>
+                    </div>
                 ))}
             </div>
         );

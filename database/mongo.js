@@ -31,6 +31,22 @@ class Connector {
             }
         );
     }
+
+    fetchMovie (id, callback) {
+        MongoClient.connect(
+            `mongodb://${this.host}:${this.port}/${this.database}`,
+            (err, db) => {
+                if (err) {
+                    throw err;
+                }
+
+                var ObjectId = require('mongodb').ObjectId;
+                db.collection('movies').find( { '_id': ObjectId(id) } ).toArray().then((result) => {
+                    callback(result);
+                });
+            }
+        );
+    }
 }
 
 module.exports = Connector;
