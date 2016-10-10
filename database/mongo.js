@@ -7,30 +7,27 @@ class Connector {
         this.database = database;
 
         MongoClient.connect(
-            `mongodb://${host}:${port}/${database}`,
+            `mongodb://${this.host}:${this.port}/${this.database}`,
             (err, db) => {
                 if (err) {
                     throw err;
                 }
             }
         );
+
     }
 
-    fetchMovies () {
-        MongoClient.connect(
+    fetchMovies (callback) {
+         MongoClient.connect(
             `mongodb://${this.host}:${this.port}/${this.database}`,
             (err, db) => {
                 if (err) {
                     throw err;
                 }
 
-                db.collection('movies').find().toArray((err, result) => {
-                    if (err) {
-                        throw err;
-                    }
-                    console.log(result);
+               db.collection('movies').find().toArray().then((result) => {
+                   callback(result);
                 });
-
             }
         );
     }
