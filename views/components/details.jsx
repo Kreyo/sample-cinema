@@ -1,5 +1,6 @@
 import React from 'react';
-import {Header} from './header';
+import {Header} from './parts/header';
+import {MovieTable} from './movies/movie-table';
 
 export class Details extends React.Component {
 
@@ -13,10 +14,9 @@ export class Details extends React.Component {
     componentDidMount() {
         this.serverRequest = $.get('/movie-ajax/'+this.props.params.movieId, function (result) {
             this.setState({
-                movie: result[Object.keys(result)[0]]
+                movie: result
             });
 
-            console.log(result);
         }.bind(this));
     }
 
@@ -29,11 +29,11 @@ export class Details extends React.Component {
                 <div className="movie-details">
                     <Header/>
                     <div className="container-fluid">
-                        <div className="col-md-8">
+                        <div className="col-md-12 movie-dates">
                             <h1>{this.state.movie.Title}</h1>
-                            <div className="movie-thumbnail" style={{backgroundImage: 'url('+this.state.movie.Poster+')'}}>
-
+                            <div className="movie-thumbnail col-md-4" style={{backgroundImage: 'url('+this.state.movie.Poster+')'}}>
                             </div>
+                            <MovieTable movie={this.state.movie}/>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Header} from './header';
-import {MovieList} from './movie-list';
+import {Header} from './parts/header';
+import {MovieList} from './movies/movie-list';
 
 export class Homepage extends React.Component {
     render() {

@@ -12,10 +12,24 @@ body {
     border-radius: 5px;
 }
 
-.static-container {
+.static-container, .login-container, .movie-dates {
     background-color: #fff;
     border-radius: 5px;
     padding: 40px;
+}
+.form-signin {
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+}
+
+input.form-control {
+    margin-bottom: 10px;
+}
+
+a.active {
+    color: #000;
+    font-weight: 600;
 }
 
 h1 {

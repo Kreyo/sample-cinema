@@ -23,10 +23,16 @@ let homeRoutes = require('./routes/home');
 app.use('', homeRoutes);
 
 /**
- * Home page actions
+ * Details page actions
  */
 let detailsRoutes = require('./routes/details');
 app.use('', detailsRoutes);
+
+/**
+ * Details page actions
+ */
+let usersRoutes = require('./routes/user');
+app.use('', usersRoutes);
 
 app.use(function(req, res) {
     res.sendFile(path.resolve(__dirname + '/views/index.html'));

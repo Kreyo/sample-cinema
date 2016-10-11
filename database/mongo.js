@@ -41,7 +41,23 @@ class Connector {
                 }
 
                 var ObjectId = require('mongodb').ObjectId;
-                db.collection('movies').find( { '_id': ObjectId(id) } ).toArray().then((result) => {
+                db.collection('movies').findOne( { '_id': ObjectId(id) } ).then((result) => {
+                    callback(result);
+                });
+            }
+        );
+    }
+
+    fetchUserByEmail(email, callback) {
+        MongoClient.connect(
+            `mongodb://${this.host}:${this.port}/${this.database}`,
+            (err, db) => {
+                if (err) {
+                    throw err;
+                }
+
+                var ObjectId = require('mongodb').ObjectId;
+                db.collection('users').findOne( { 'email': email } ).then((result) => {
                     callback(result);
                 });
             }
