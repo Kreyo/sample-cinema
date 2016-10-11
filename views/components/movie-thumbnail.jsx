@@ -8,10 +8,7 @@ export class MovieThumbnail extends React.Component {
             <Link className="movie" style={{display: "block"}} to={`/movie/${this.props.id}`}>
                 <div className="movie-thumbnail"
                      style = {{
-                         backgroundImage: 'url(' + this.props.image + ')',
-                         height: '368px',
-                         backgroundSize: 'cover',
-                         backgroundPosition: 'center'
+                         backgroundImage: 'url(' + this.props.image + ')'
                      }}>
                 </div>
                 <div className="movie-data">

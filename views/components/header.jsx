@@ -7,11 +7,17 @@ export class Header extends React.Component {
                 <div className="container">
                     <Link className="navbar-brand" to={`/`}>Super Cinema</Link>
                     <ul className="nav navbar-nav">
-                        <li className="active">
-                            <Link to={`/`}>Home</Link>
+                        <li>
+                            <Link activeClassName={"active"} to={`/`}>Home</Link>
                         </li>
                         <li>
-                            <Link to={`/`}>About</Link>
+                            <Link activeClassName={"active"} to={`/about`}>About</Link>
+                        </li>
+                        <li>
+                            <Link activeClassName={"active"} to={`/terms`}>Terms and Conditions</Link>
+                        </li>
+                        <li>
+                            <Link activeClassName={"active"} to={`/ads`}>Advertisers</Link>
                         </li>
                     </ul>
                 </div>
