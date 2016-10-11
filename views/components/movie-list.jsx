@@ -4,7 +4,7 @@ import {MovieThumbnail} from './movie-thumbnail';
 export class MovieList extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             movies : []
         }

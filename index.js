@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+var path = require('path');
 
 /**
  * MongoDB config
@@ -22,16 +23,15 @@ let homeRoutes = require('./routes/home');
 app.use('', homeRoutes);
 
 /**
- * Movie Details actions
+ * Home page actions
  */
 let detailsRoutes = require('./routes/details');
-app.use('/movie', detailsRoutes);
+app.use('', detailsRoutes);
 
-/**
- * User routes actions
- */
-let userRoutes = require('./routes/user');
-app.use('/user', userRoutes);
+app.use(function(req, res) {
+    res.sendFile(path.resolve(__dirname + '/views/index.html'));
+});
+
 
 app.listen(3000, function () {
     console.log('Super cinema app listening on port 3000!');

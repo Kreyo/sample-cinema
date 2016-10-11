@@ -1,17 +1,17 @@
 import React from 'react';
-
+import { Link } from 'react-router'
 export class Header extends React.Component {
     render() {
         return(
             <nav className="navbar navbar-inverse navbar-static-top">
                 <div className="container">
-                    <a className="navbar-brand" href="/">Super Cinema</a>
+                    <Link className="navbar-brand" to={`/`}>Super Cinema</Link>
                     <ul className="nav navbar-nav">
                         <li className="active">
-                            <a href="/">Home</a>
+                            <Link to={`/`}>Home</Link>
                         </li>
                         <li>
-                            <a href="/about">About</a>
+                            <Link to={`/`}>About</Link>
                         </li>
                     </ul>
                 </div>

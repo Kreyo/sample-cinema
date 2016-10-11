@@ -1,10 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router'
 
 export class MovieThumbnail extends React.Component {
 
     render() {
         return(
-            <a className="movie" style={{display: "block"}} href={"/movie/"+this.props.id}>
+            <Link className="movie" style={{display: "block"}} to={`/movie/${this.props.id}`}>
                 <div className="movie-thumbnail"
                      style = {{
                          backgroundImage: 'url(' + this.props.image + ')',
@@ -17,7 +18,7 @@ export class MovieThumbnail extends React.Component {
                     <p>{this.props.name}</p>
                     <em>{this.props.date}</em>
                 </div>
-            </a>
+            </Link>
 
         );
     }
