@@ -32,7 +32,7 @@ export class Ads extends React.Component {
                 <div className="container static-container">
                     <h1>Advertisers</h1>
                     <p className="about-content">
-                       Wow, someone actually clicked on this link.
+                       Wow, someone actually clicked on this link. :D
                     </p>
                 </div>
             </div>
