@@ -21,3 +21,7 @@
 - ReactJS for frontend rendering
 - React-router for template generation
 - Mocha and Chai for unit testing
+- Moment.js for date formatting and +4 seconds of page loading speed
+
+## Known issues
+- Performance: need to find a way to speed up \ get rid of moment.js
