@@ -1,6 +1,9 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 var path = require('path');
+
+app.use(cookieParser());
 
 /**
  * MongoDB config
