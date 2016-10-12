@@ -42,3 +42,5 @@ app.use(function(req, res) {
 app.listen(3000, function () {
     console.log('Super cinema app listening on port 3000!');
 });
+
+module.exports = app;

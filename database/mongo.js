@@ -56,12 +56,42 @@ class Connector {
                     throw err;
                 }
 
-                var ObjectId = require('mongodb').ObjectId;
                 db.collection('users').findOne( { 'email': email } ).then((result) => {
                     callback(result);
                 });
             }
         );
+    }
+
+    insertUser(data, callback) {
+        MongoClient.connect(
+            `mongodb://${this.host}:${this.port}/${this.database}`,
+            (err, db) => {
+                if (err) {
+                    throw err;
+                }
+
+                let salt = Math.random().toString(36).substring(7);
+                var sha256 = require('js-sha256');
+
+                db.collection('users').insertOne(
+                    {
+                        'email': data.email,
+                        'salt': salt,
+                        'password': sha256(data.password + salt)
+                    }).then((result) => {
+                    callback(result);
+                });
+            }
+        );
+    }
+
+    createSession(userId, callback) {
+
+    }
+
+    validateSession(sessionId) {
+
     }
 }
 
