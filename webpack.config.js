@@ -3,6 +3,7 @@ module.exports = {
     entry: [
         './views/public/main.js'
     ],
+    devtool: "source-map",
     module: {
         loaders: [
             {
@@ -18,6 +19,9 @@ module.exports = {
     output: {
         path: __dirname + '/views/public',
         publicPath: '/',
-        filename: 'bundle.js'
-    }
+        filename: 'bundle.min.js'
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({minimize: true})
+    ]
 }; 

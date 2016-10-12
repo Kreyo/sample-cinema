@@ -24,6 +24,9 @@ export class Header extends React.Component {
                     <li>
                         <Link activeClassName={"active"} to={`/`}>{decodeURIComponent(this.getCookie('email'))}</Link>
                     </li>
+                    <li>
+                        <a href="/logout">Logout</a>
+                    </li>
                 </ul>
             );
         } else {

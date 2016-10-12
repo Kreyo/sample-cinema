@@ -1,6 +1,7 @@
 import React from 'react';
 import {Header} from './parts/header';
 import {MovieTable} from './movies/movie-table';
+import {MovieComments} from './movies/movie-comments';
 
 export class Details extends React.Component {
 
@@ -35,6 +36,7 @@ export class Details extends React.Component {
                             </div>
                             <MovieTable movie={this.state.movie}/>
                         </div>
+                        <MovieComments source={"/ajax-comments/"+this.props.params.movieId}/>
                     </div>
                 </div>
         );

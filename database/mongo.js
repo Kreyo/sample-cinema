@@ -1,5 +1,8 @@
 let MongoClient = require('mongodb').MongoClient;
 
+/**
+ * TODO: Move separate collections functions to separate files!
+ */
 class Connector {
     constructor (host = 'localhost', port = '27017', database)  {
         this.host = host;
@@ -24,8 +27,9 @@ class Connector {
         );
     }
 
-    fetchMovies (callback) {
+////Movies
 
+    fetchMovies (callback) {
         this.connect((db) => {
             db.collection('movies').find().toArray().then((result) => {
                 callback(result);
@@ -42,6 +46,8 @@ class Connector {
             });
         });
     }
+
+////Users
 
     fetchUserByEmail(email, callback) {
 
@@ -70,6 +76,8 @@ class Connector {
         });
     }
 
+////Sessions
+
     createSession(userId, callback) {
         this.connect((db) => {
             db.collection('sessions').insertOne(
@@ -96,6 +104,34 @@ class Connector {
         this.connect((db) => {
             var ObjectId = require('mongodb').ObjectId;
             db.collection('sessions').deleteOne( { '_id': ObjectId(sessionId) } ).then((result) => {
+                callback(result);
+            });
+        });
+    }
+
+////Comments
+
+    addComment(comment, callback) {
+        this.connect((db) => {
+            db.collection('comments').insertOne( comment ).then((result) => {
+                callback(result);
+            });
+        });
+    }
+
+    removeComment(commentId, callback) {
+        this.connect((db) => {
+            var ObjectId = require('mongodb').ObjectId;
+            db.collection('comments').deleteOne( { '_id': ObjectId(commentId) } ).then((result) => {
+                callback(result);
+            });
+        });
+    }
+
+    fetchCommentsByMovie(movieId, callback) {
+        this.connect((db) => {
+            var ObjectId = require('mongodb').ObjectId;
+            db.collection('comments').find( { 'movieId': ObjectId(movieId) } ).sort({'date': -1}).toArray().then((result) => {
                 callback(result);
             });
         });
