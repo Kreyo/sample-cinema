@@ -1,28 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router'
+import {Services} from '../utility/services';
+
 export class Header extends React.Component {
 
-    getCookie(cname) {
-        let name = cname + "=";
-        let ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-
     getRightSide() {
-        if (this.getCookie('sessionID')) {
+        let service = new Services();
+        if (service.getCookie('sessionID')) {
             return(
                 <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <Link activeClassName={"active"} to={`/`}>{decodeURIComponent(this.getCookie('email'))}</Link>
+                        <Link activeClassName={"active"} to={`/`}>{decodeURIComponent(service.getCookie('email'))}</Link>
                     </li>
                     <li>
                         <a href="/logout">Logout</a>
