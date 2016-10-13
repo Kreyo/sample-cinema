@@ -13,9 +13,7 @@ const databasePort = '27017';
 const databaseName = 'movies';
 
 var mongo = require('./api/database/mongo');
-var connection = new mongo(databaseHost, databasePort, databaseName);
-
-app.set('connection', connection);
+app.locals.connection = new mongo(databaseHost, databasePort, databaseName);
 
 app.use(express.static(__dirname + '/dist/'));
 
@@ -32,7 +30,7 @@ let detailsRoutes = require('./api/routes/details');
 app.use('/api/details', detailsRoutes);
 
 /**
- * Details page actions
+ * User page actions
  */
 let usersRoutes = require('./api/routes/user');
 app.use('/api/user', usersRoutes);

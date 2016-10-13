@@ -6,7 +6,7 @@ var sha256 = require('js-sha256');
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.post('/login', urlencodedParser, function (req, res) {
-    let connection = req.app.get('connection');
+    let connection = req.app.locals.connection;
     connection.fetchUserByEmail(req.body.email, (result) => {
         if (result) {
             if ( sha256(req.body.password + result.salt).toLowerCase() == result.password.toLowerCase() ) {
@@ -29,7 +29,7 @@ router.post('/login', urlencodedParser, function (req, res) {
 });
 
 router.post('/register', urlencodedParser, function (req, res) {
-    let connection = req.app.get('connection');
+    let connection = req.app.locals.connection;
     connection.fetchUserByEmail(req.body.email, (result) => {
         if (result) {
             res.status(400).send('User already exists!');
@@ -43,8 +43,7 @@ router.post('/register', urlencodedParser, function (req, res) {
 });
 
 router.get('/logout', function(req, res) {
-
-    let connection = req.app.get('connection');
+    let connection = req.app.locals.connection;
     connection.removeSession(req.cookies.sessionID, (result) => {
         res.clearCookie('sessionID').clearCookie('email').redirect('/');
     });

@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 router.get('/movie-list', function(req, res) {
-    let connection = req.app.get('connection');
+    let connection = req.app.locals.connection;
     connection.fetchMovies((result) => {
         res.send(result);
     });
