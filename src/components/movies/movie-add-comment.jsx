@@ -7,8 +7,7 @@ export class CommentForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            commentBody: '',
-            added: false
+            commentBody: ''
         }
     }
 
@@ -21,11 +20,13 @@ export class CommentForm extends React.Component {
     addComment(event) {
         event.preventDefault();
 
-        this.props.addComment(this.state.commentBody, this.props.movieId);
+        if (this.state.commentBody != '') {
+            this.props.addComment(this.state.commentBody, this.props.movieId);
 
-        this.setState({
-            commentBody: ''
-        });
+            this.setState({
+                commentBody: ''
+            });
+        }
     }
 
     renderForm() {

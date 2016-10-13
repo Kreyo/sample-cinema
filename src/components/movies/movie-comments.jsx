@@ -54,7 +54,7 @@ export class MovieComments extends React.Component {
                 {this.state.comments.length >= 1
                     ? this.renderCommentList()
                     : <p>Whoops, looks like no comments here yet. Why not leave one?</p>}
-                <CommentForm addComment={this.addComment} movieId={this.props.movieId}/>
+                <CommentForm addComment={this.addComment.bind(this)} movieId={this.props.movieId}/>
             </div>
         );
     }
