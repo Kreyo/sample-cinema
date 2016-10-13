@@ -13,6 +13,10 @@ export class MovieComments extends React.Component {
     }
 
     componentDidMount() {
+        this.fetchComments();
+    }
+
+    fetchComments() {
         axios.get(this.props.source)
             .then((result) => {
                 this.setState({
@@ -32,6 +36,17 @@ export class MovieComments extends React.Component {
         );
     }
 
+    addComment(body, id) {
+        axios.post('/api/details/comments',
+            {
+                'body': body,
+                'movieId': id
+            })
+            .then((result) => {
+                this.fetchComments();
+            });
+    }
+
     render() {
         return(
             <div className="movie-comments col-md-12">
@@ -39,7 +54,7 @@ export class MovieComments extends React.Component {
                 {this.state.comments.length >= 1
                     ? this.renderCommentList()
                     : <p>Whoops, looks like no comments here yet. Why not leave one?</p>}
-                <CommentForm/>
+                <CommentForm addComment={this.addComment} movieId={this.props.movieId}/>
             </div>
         );
     }

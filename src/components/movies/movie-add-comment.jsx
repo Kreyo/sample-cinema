@@ -7,19 +7,25 @@ export class CommentForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            commentBody: ''
+            commentBody: '',
+            added: false
         }
     }
 
     setBody(event) {
         this.setState({
-            body : event.target.value
+            commentBody : event.target.value
         });
     }
 
     addComment(event) {
         event.preventDefault();
-        //add post request to /ajax-comment
+
+        this.props.addComment(this.state.commentBody, this.props.movieId);
+
+        this.setState({
+            commentBody: ''
+        });
     }
 
     renderForm() {

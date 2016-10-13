@@ -34,7 +34,7 @@ export class Details extends React.Component {
                             </div>
                             <MovieTable movie={this.state.movie}/>
                         </div>
-                        <MovieComments source={"/api/details/comments/"+this.props.params.movieId}/>
+                        <MovieComments source={"/api/details/comments/"+this.props.params.movieId} movieId={this.props.params.movieId}/>
                     </div>
                 </div>
         );
