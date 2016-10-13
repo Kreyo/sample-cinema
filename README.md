@@ -3,7 +3,7 @@
 - git clone https://github.com/Kreyo/sample-cinema.git
 - go to the folder containing the cloned code
 - npm install
-- gulp
+- webpack
 - if you don't have MongoDB running locally, visit https://docs.mongodb.com/manual/administration/install-community/
 - you can use the existing database dump from the dump folder
 - change the databaseHost, databasePort and databaseName parameters in index.js

@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-router.get('/movie-ajax/:id', function(req, res) {
+router.get('/:id', function(req, res) {
     let id = req.params.id;
     let connection = req.app.get('connection');
     connection.fetchMovie(id, (result) => {
@@ -12,7 +12,7 @@ router.get('/movie-ajax/:id', function(req, res) {
     });
 });
 
-router.get('/ajax-comments/:id', function (req, res) {
+router.get('/comments/:id', function (req, res) {
     let id = req.params.id;
     let connection = req.app.get('connection');
     connection.fetchCommentsByMovie(id, (result) => {
@@ -20,7 +20,7 @@ router.get('/ajax-comments/:id', function (req, res) {
     });
 });
 
-router.post('/ajax-comment', urlencodedParser, function (req, res) {
+router.post('/comments', urlencodedParser, function (req, res) {
     let connection = req.app.get('connection');
     let ObjectId = require('mongodb').ObjectId;
     let comment = {

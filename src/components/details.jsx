@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {Header} from './parts/header';
 import {MovieTable} from './movies/movie-table';
 import {MovieComments} from './movies/movie-comments';
@@ -13,17 +14,14 @@ export class Details extends React.Component {
     }
 
     componentDidMount() {
-        this.serverRequest = $.get('/movie-ajax/'+this.props.params.movieId, function (result) {
-            this.setState({
-                movie: result
+        axios.get('/api/details/'+this.props.params.movieId)
+            .then((result) => {
+                this.setState({
+                    movie: result.data
+                });
             });
-
-        }.bind(this));
     }
 
-    componentWillUnmount() {
-        this.serverRequest.abort();
-    }
 
     render() {
         return(
@@ -36,7 +34,7 @@ export class Details extends React.Component {
                             </div>
                             <MovieTable movie={this.state.movie}/>
                         </div>
-                        <MovieComments source={"/ajax-comments/"+this.props.params.movieId}/>
+                        <MovieComments source={"/api/details/comments/"+this.props.params.movieId}/>
                     </div>
                 </div>
         );

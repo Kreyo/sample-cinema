@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 module.exports = {
     entry: [
-        './views/public/main.js'
+        './src/main.js'
     ],
+    vendor: ['react', 'react-dom', 'bootstrap'],
     devtool: "source-map",
     module: {
         loaders: [
@@ -17,7 +18,7 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     output: {
-        path: __dirname + '/views/public',
+        path: __dirname + '/dist',
         publicPath: '/',
         filename: 'bundle.min.js'
     },

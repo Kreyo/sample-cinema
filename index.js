@@ -12,35 +12,35 @@ const databaseHost = 'localhost';
 const databasePort = '27017';
 const databaseName = 'movies';
 
-var mongo = require('./database/mongo');
+var mongo = require('./api/database/mongo');
 var connection = new mongo(databaseHost, databasePort, databaseName);
 
 app.set('connection', connection);
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/dist/'));
 
 /**
  * Home page actions
  */
-let homeRoutes = require('./routes/home');
-app.use('', homeRoutes);
+let homeRoutes = require('./api/routes/home');
+app.use('/api/home', homeRoutes);
 
 /**
  * Details page actions
  */
-let detailsRoutes = require('./routes/details');
-app.use('', detailsRoutes);
+let detailsRoutes = require('./api/routes/details');
+app.use('/api/details', detailsRoutes);
 
 /**
  * Details page actions
  */
-let usersRoutes = require('./routes/user');
-app.use('', usersRoutes);
+let usersRoutes = require('./api/routes/user');
+app.use('/api/user', usersRoutes);
+
 
 app.use(function(req, res) {
-    res.sendFile(path.resolve(__dirname + '/views/index.html'));
+    res.sendFile(path.resolve(__dirname + '/dist/index.html'));
 });
-
 
 app.listen(3000, function () {
     console.log('Super cinema app listening on port 3000!');

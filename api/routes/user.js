@@ -5,7 +5,7 @@ var sha256 = require('js-sha256');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-router.post('/ajax-login', urlencodedParser, function (req, res) {
+router.post('/login', urlencodedParser, function (req, res) {
     let connection = req.app.get('connection');
     connection.fetchUserByEmail(req.body.email, (result) => {
         if (result) {
@@ -14,7 +14,7 @@ router.post('/ajax-login', urlencodedParser, function (req, res) {
                 connection.createSession(result._id,  (sessionResult) => {
                    connection.validateSession(result._id, (databaseResult) => {
                        res.cookie("sessionID", databaseResult._id);
-                       res.cookie("email", result.email);
+                       res.cookie("email", req.body.email);
                        res.sendStatus(200);
                    });
                 });
@@ -28,7 +28,7 @@ router.post('/ajax-login', urlencodedParser, function (req, res) {
     });
 });
 
-router.post('/ajax-register', urlencodedParser, function (req, res) {
+router.post('/register', urlencodedParser, function (req, res) {
     let connection = req.app.get('connection');
     connection.fetchUserByEmail(req.body.email, (result) => {
         if (result) {

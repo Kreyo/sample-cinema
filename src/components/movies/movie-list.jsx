@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {MovieThumbnail} from './movie-thumbnail';
 
 export class MovieList extends React.Component {
@@ -7,19 +8,18 @@ export class MovieList extends React.Component {
         super(props);
         this.state = {
             movies : []
-        }
+        };
     }
 
     componentDidMount() {
-        this.serverRequest = $.get(this.props.source, function (result) {
-            this.setState({
-                movies: result
-            });
-        }.bind(this));
-    }
-
-    componentWillUnmount() {
-        this.serverRequest.abort();
+        axios.get(this.props.source)
+            .then((result) => {
+                this.setState({
+                    movies: result.data
+                });
+            }).catch(function (error) {
+            console.log(error);
+        });
     }
 
     render() {

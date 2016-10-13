@@ -33,9 +33,6 @@
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "chai": "^3.2.0",
-    "chai-http": "^1.0.0",
-    "gulp": "^3.9.1",
-    "gulp-bower": "0.0.13",
-    "gulp-webpack": "^1.5.0"
+    "chai-http": "^1.0.0"
   }
 }

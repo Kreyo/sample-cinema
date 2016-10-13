@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {Header} from '../parts/header';
 import { Link, browserHistory } from "react-router"
 
@@ -27,27 +28,19 @@ export class Login extends React.Component {
 
     login(event) {
         event.preventDefault();
-        $.post('/ajax-login', {
-            'email': this.state.email,
-            'password': this.state.password},
-            (success) => {
+        axios.post('/api/user/login',
+            {
+                'email': this.state.email,
+                'password': this.state.password
+            })
+            .then((result) => {
                 browserHistory.push('/');
-            }
-        ).fail(( data ) => {
-            this.setState({
-                loginFailed: true
+            })
+            .catch( (error) => {
+                this.setState({
+                    loginFailed: true
+                });
             });
-        });
-    }
-
-    renderErrors() {
-        if (this.state.loginFailed) {
-            return (
-                <div className="alert alert-danger">Email or password incorrect!</div>
-            );
-        } else {
-            return '';
-        }
     }
 
     render() {
@@ -55,7 +48,7 @@ export class Login extends React.Component {
             <div className="login">
                 <Header/>
                 <div className="container static-container">
-                    {this.renderErrors()}
+                    {this.state.loginFailed ?  <div className="alert alert-danger">Email or password incorrect!</div> : ''}
                     <form className="form-signin" onSubmit={this.login.bind(this)}>
                         <h1 className="form-signin-heading">Sign in</h1>
                         <label className="sr-only">Email address</label>

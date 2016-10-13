@@ -10,7 +10,7 @@ export class Homepage extends React.Component {
                 <div className="container-fluid">
                     <div className="col-md-12 movies-list">
                         <h1>Popular Releases</h1>
-                        <MovieList source="/movie-list-ajax"/>
+                        <MovieList source="/api/home/movie-list"/>
                     </div>
                 </div>
             </div>
