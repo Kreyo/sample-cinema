@@ -3,9 +3,9 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var sha256 = require('js-sha256');
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var jsonParser = bodyParser.json();
 
-router.post('/login', urlencodedParser, function (req, res) {
+router.post('/login', jsonParser, function (req, res) {
     let connection = req.app.locals.connection;
     connection.fetchUserByEmail(req.body.email, (result) => {
         if (result) {
@@ -14,7 +14,7 @@ router.post('/login', urlencodedParser, function (req, res) {
                 connection.createSession(result._id,  (sessionResult) => {
                    connection.validateSession(result._id, (databaseResult) => {
                        res.cookie("sessionID", databaseResult._id);
-                       res.cookie("email", req.body.email);
+                       res.cookie("email", result.email);
                        res.sendStatus(200);
                    });
                 });
@@ -28,7 +28,7 @@ router.post('/login', urlencodedParser, function (req, res) {
     });
 });
 
-router.post('/register', urlencodedParser, function (req, res) {
+router.post('/register', jsonParser, function (req, res) {
     let connection = req.app.locals.connection;
     connection.fetchUserByEmail(req.body.email, (result) => {
         if (result) {
