@@ -14,6 +14,7 @@
 - Movie list and details
 - Several static pages
 - Authorization and Registration
+- Comment feature
 
 ## Technology stack
 - Node.js
@@ -21,7 +22,4 @@
 - ReactJS for frontend rendering
 - React-router for template generation
 - Mocha and Chai for unit testing
-- Moment.js for date formatting and +4 seconds of page loading speed
-
-## Known issues
-- Performance: need to find a way to speed up \ get rid of moment.js
+- Moment.js for date formatting
