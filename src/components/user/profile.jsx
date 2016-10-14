@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from '../parts/header';
 import {profile} from './user-api';
-import {Services} from '../utility/services';
+import {getCookie} from '../utility/services';
 
 export class UserProfile extends React.Component {
 
@@ -13,8 +13,7 @@ export class UserProfile extends React.Component {
     }
 
     componentDidMount() {
-        const services = new Services();
-        const email = decodeURIComponent(services.getCookie('email'));
+        const email = decodeURIComponent(getCookie('email'));
 
         profile(email, (result) => {
             this.setState({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router"
-import {Services} from '../utility/services';
+import {getCookie} from '../utility/services';
 
 export class CommentForm extends React.Component {
 
@@ -40,11 +40,10 @@ export class CommentForm extends React.Component {
     }
 
     render() {
-        let services = new Services();
         return(
             <div className="form__comment">
                 <h3>Add your comment</h3>
-                {services.getCookie('email') ?
+                {getCookie('email') ?
                     this.renderForm() :
                     <p>You must <Link to={`/login`}>login</Link> to leave comments!</p>}
             </div>

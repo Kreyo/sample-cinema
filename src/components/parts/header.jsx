@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router'
-import {Services} from '../utility/services';
+import {getCookie} from '../utility/services';
 
 export class Header extends React.Component {
 
     getRightSide() {
-        let service = new Services();
-        if (service.getCookie('sessionID')) {
+        if (getCookie('sessionID')) {
             return(
                 <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <Link activeClassName={"active"} to={`/profile`}>{decodeURIComponent(service.getCookie('email'))}</Link>
+                        <Link activeClassName={"active"} to={`/profile`}>{decodeURIComponent(getCookie('email'))}</Link>
                     </li>
                     <li>
                         <Link to={`/logout`}>Logout</Link>
