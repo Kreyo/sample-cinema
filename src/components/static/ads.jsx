@@ -6,7 +6,7 @@ export class Ads extends React.Component {
         return(
             <div className="ads">
                 <Header/>
-                <div className="container static--container">
+                <div className="container static__container">
                     <h1>Advertisers</h1>
                     <p className="about-content">
                         Wow, someone actually clicked on this link. :D

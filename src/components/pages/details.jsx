@@ -1,8 +1,8 @@
 import React from 'react';
-import {Header} from './parts/header';
-import {MovieTable} from './movies/movie-table';
-import {MovieComments} from './movies/movie-comments';
-import {MovieApi} from './movies/movie-api';
+import {Header} from '../parts/header';
+import {MovieTable} from '../movies/movie-table';
+import {MovieComments} from '../movies/movie-comments';
+import {getMovieDetails} from '../movies/movie-api';
 
 export class Details extends React.Component {
 
@@ -14,24 +14,21 @@ export class Details extends React.Component {
     }
 
     componentDidMount() {
-        let api = new MovieApi();
-
-        api.getMovieDetails(this.props.params.movieId, (result) => {
+        getMovieDetails(this.props.params.movieId, (result) => {
             this.setState({
                 movie: result.data
             });
         });
     }
 
-
     render() {
         return(
-                <div className="movie--details">
+                <div className="movie__details">
                     <Header/>
                     <div className="container-fluid">
-                        <div className="col-md-12 movie--dates">
+                        <div className="col-md-12 movie__dates">
                             <h1>{this.state.movie.Title}</h1>
-                            <div className="movie--thumbnail col-md-4" style={{backgroundImage: 'url('+this.state.movie.Poster+')'}}>
+                            <div className="movie__thumbnail col-md-4" style={{backgroundImage: 'url('+this.state.movie.Poster+')'}}>
                             </div>
                             <MovieTable movie={this.state.movie}/>
                         </div>

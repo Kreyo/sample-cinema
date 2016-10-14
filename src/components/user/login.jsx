@@ -1,7 +1,7 @@
 import React from 'react';
 import {Header} from '../parts/header';
-import { Link, browserHistory } from "react-router"
-import {UserApi} from './user-api';
+import { browserHistory } from "react-router"
+import {login} from './user-api';
 
 export class Login extends React.Component {
 
@@ -28,13 +28,12 @@ export class Login extends React.Component {
 
     login(event) {
         event.preventDefault();
-        let api = new UserApi();
-        let data = {
+        const data = {
             'email': this.state.email,
             'password': this.state.password
         };
 
-        api.login(
+        login(
             data,
             (result) => {
                 browserHistory.push('/');
@@ -51,9 +50,9 @@ export class Login extends React.Component {
         return(
             <div className="login">
                 <Header/>
-                <div className="container static--container">
+                <div className="container static__container">
                     {this.state.loginFailed ?  <div className="alert alert-danger">Email or password incorrect!</div> : ''}
-                    <form className="form--signin" onSubmit={this.login.bind(this)}>
+                    <form className="form__signin" onSubmit={this.login.bind(this)}>
                         <h1 className="form-signin-heading">Sign in</h1>
                         <label className="sr-only">Email address</label>
                         <input id="inputEmail" className="form-control" placeholder="Email address" required="" type="email"

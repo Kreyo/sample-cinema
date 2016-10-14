@@ -14,6 +14,10 @@ export class Logout extends React.Component {
     }
 
     render() {
-        return('');
+        return(
+            <div className="logout">
+                Logging out...
+            </div>
+        );
     };
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Header} from '../parts/header';
-import {UserApi} from './user-api';
+import {register} from './user-api';
 
 export class Register extends React.Component {
 
@@ -49,12 +49,11 @@ export class Register extends React.Component {
     }
 
     postRegisterData() {
-        let api = new UserApi();
-        let data =  {
+        const data =  {
             'email': this.state.email,
             'password': this.state.password
         };
-        api.register(
+        register(
             data,
             (result) => {
                 this.setState({
@@ -73,11 +72,11 @@ export class Register extends React.Component {
         return(
             <div className="login">
                 <Header/>
-                <div className="container static--container">
+                <div className="container static__container">
                     {this.state.error != '' ? <div className="alert alert-danger">{this.state.error}</div> : ''}
                     {this.state.success ?  <div className="alert alert-success">You can now login using your credentials!</div> : '' }
-                    <form className="form--signin" onSubmit={this.register.bind(this)}>
-                        <h1 className="form--signin--heading">Sign up</h1>
+                    <form className="form__signin" onSubmit={this.register.bind(this)}>
+                        <h1 className="form__signin__heading">Sign up</h1>
                         <label className="sr-only">Email address</label>
                         <input id="inputEmail" className="form-control" placeholder="Email address" required="" type="email"
                                onChange={this.setEmail.bind(this)}/>

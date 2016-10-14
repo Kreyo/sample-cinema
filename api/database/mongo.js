@@ -1,4 +1,5 @@
 let MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectId;
 
 /**
  * TODO: Move separate collections functions to separate files!
@@ -40,7 +41,7 @@ class Connector {
     fetchMovie (id, callback) {
 
         this.connect((db) => {
-            var ObjectId = require('mongodb').ObjectId;
+
             db.collection('movies').findOne( { '_id': ObjectId(id) } ).then((result) => {
                 callback(result);
             });
@@ -91,10 +92,19 @@ class Connector {
         });
     }
 
-    validateSession(userId, callback) {
+    validateSessionByUser(userId, callback) {
         this.connect((db) => {
-            var ObjectId = require('mongodb').ObjectId;
+
             db.collection('sessions').findOne( { 'userId': ObjectId(userId) } ).then((result) => {
+                callback(result);
+            });
+        });
+    }
+
+    validateSession(sessionId, callback) {
+        this.connect((db) => {
+
+            db.collection('sessions').findOne( { '_id': ObjectId(sessionId) } ).then((result) => {
                 callback(result);
             });
         });
@@ -102,7 +112,7 @@ class Connector {
 
     removeSession(sessionId, callback) {
         this.connect((db) => {
-            var ObjectId = require('mongodb').ObjectId;
+
             db.collection('sessions').deleteOne( { '_id': ObjectId(sessionId) } ).then((result) => {
                 callback(result);
             });
@@ -121,7 +131,7 @@ class Connector {
 
     removeComment(commentId, callback) {
         this.connect((db) => {
-            var ObjectId = require('mongodb').ObjectId;
+
             db.collection('comments').deleteOne( { '_id': ObjectId(commentId) } ).then((result) => {
                 callback(result);
             });
@@ -130,7 +140,7 @@ class Connector {
 
     fetchCommentsByMovie(movieId, callback) {
         this.connect((db) => {
-            var ObjectId = require('mongodb').ObjectId;
+
             db.collection('comments').find( { 'movieId': ObjectId(movieId) } ).sort({'date': -1}).toArray().then((result) => {
                 callback(result);
             });

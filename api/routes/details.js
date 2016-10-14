@@ -30,7 +30,23 @@ router.post('/comments', jsonParser, function (req, res) {
         'date': new Date()
     };
 
-    connection.addComment(comment, (result) => {
+    connection.validateSession(req.cookies.sessionID, (databaseResult) => {
+        if (databaseResult) {
+            connection.addComment(comment, (result) => {
+                res.send(result);
+            });
+        } else {
+            res.clearCookie('sessionID').clearCookie('email').sendStatus(401);
+        }
+    });
+
+});
+
+router.delete('/comments/:id', function(req, res) {
+    let connection = req.app.locals.connection;
+    let commentId = req.params.id;
+
+    connection.removeComment(commentId, (result) => {
         res.send(result);
     });
 });

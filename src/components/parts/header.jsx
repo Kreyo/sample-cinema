@@ -10,10 +10,10 @@ export class Header extends React.Component {
             return(
                 <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <Link activeClassName={"active"} to={`/`}>{decodeURIComponent(service.getCookie('email'))}</Link>
+                        <Link activeClassName={"active"} to={`/profile`}>{decodeURIComponent(service.getCookie('email'))}</Link>
                     </li>
                     <li>
-                        <a href="/api/user/logout">Logout</a>
+                        <Link to={`/logout`}>Logout</Link>
                     </li>
                 </ul>
             );

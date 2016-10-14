@@ -12,7 +12,7 @@ router.post('/login', jsonParser, function (req, res) {
             if ( sha256(req.body.password + result.salt).toLowerCase() == result.password.toLowerCase() ) {
 
                 connection.createSession(result._id,  (sessionResult) => {
-                   connection.validateSession(result._id, (databaseResult) => {
+                   connection.validateSessionByUser(result._id, (databaseResult) => {
                        res.cookie("sessionID", databaseResult._id);
                        res.cookie("email", result.email);
                        res.sendStatus(200);
@@ -40,6 +40,19 @@ router.post('/register', jsonParser, function (req, res) {
         }
     });
 
+});
+
+router.get('/profile', function (req, res) {
+    let connection = req.app.locals.connection;
+    connection.validateSession(req.cookies.sessionID, (databaseResult) => {
+        if (databaseResult) {
+            connection.fetchUserByEmail(req.query.email, (result) => {
+                res.send(result);
+            });
+        } else {
+            res.clearCookie('sessionID').clearCookie('email').sendStatus(401);
+        }
+    });
 });
 
 router.get('/logout', function(req, res) {

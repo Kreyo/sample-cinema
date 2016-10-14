@@ -2,28 +2,33 @@ import axios from 'axios';
 
 const loginURL = '/api/user/login';
 const registerURL = '/api/user/register';
+const profileURL = '/api/user/profile';
 
-export class UserApi {
+export const register = (data, successCallback, errorCallback) => {
 
-    login(data, successCallback, errorCallback) {
+    axios.post(registerURL, data)
+        .then((result) => {
+            successCallback(result);
+        })
+        .catch((error) => {
+            errorCallback(error);
+        });
+};
 
-        axios.post(loginURL, data)
-            .then((result) => {
-                successCallback(result);
-            })
-            .catch( (error) => {
-                errorCallback(error);
-            });
-    }
+export const login = (data, successCallback, errorCallback) => {
 
-    register(data, successCallback, errorCallback) {
+    axios.post(loginURL, data)
+        .then((result) => {
+            successCallback(result);
+        })
+        .catch((error) => {
+            errorCallback(error);
+        });
+};
 
-        axios.post(registerURL, data)
-            .then((result) => {
-                successCallback(result);
-            })
-            .catch((error) => {
-                errorCallback(error);
-            });
-    }
-}
+export const profile = (email, callback) => {
+    axios.get(profileURL + '?email=' + email)
+        .then((result) => {
+            callback(result);
+        });
+};

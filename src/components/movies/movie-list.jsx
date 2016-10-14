@@ -1,6 +1,6 @@
 import React from 'react';
 import {MovieThumbnail} from './movie-thumbnail';
-import {MovieApi} from './movie-api';
+import {getMoviesList} from './movie-api';
 
 export class MovieList extends React.Component {
 
@@ -12,8 +12,7 @@ export class MovieList extends React.Component {
     }
     componentDidMount() {
 
-        let api = new MovieApi();
-        api.getMoviesList((result) => {
+        getMoviesList((result) => {
             this.setState({
                 movies: result.data
             });

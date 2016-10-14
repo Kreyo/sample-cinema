@@ -4,7 +4,7 @@ export class MovieTable extends React.Component {
 
     render() {
         return(
-            <div className="movie--credentials col-md-7 col-md-offset-1">
+            <div className="movie__credentials col-md-7 col-md-offset-1">
                 <div className="table-responsive">
                     <table className="table table-hover">
                         <tbody>
