@@ -6,7 +6,7 @@ export class Terms extends React.Component {
         return(
             <div className="terms">
                 <Header/>
-                <div className="container static-container">
+                <div className="container static--container">
                     <h1>Terms and Conditions</h1>
                     <p className="terms-content">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.

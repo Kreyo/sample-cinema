@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import {Header} from './parts/header';
 import {MovieTable} from './movies/movie-table';
 import {MovieComments} from './movies/movie-comments';
+import {MovieApi} from './movies/movie-api';
 
 export class Details extends React.Component {
 
@@ -14,27 +14,28 @@ export class Details extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/details/'+this.props.params.movieId)
-            .then((result) => {
-                this.setState({
-                    movie: result.data
-                });
+        let api = new MovieApi();
+
+        api.getMovieDetails(this.props.params.movieId, (result) => {
+            this.setState({
+                movie: result.data
             });
+        });
     }
 
 
     render() {
         return(
-                <div className="movie-details">
+                <div className="movie--details">
                     <Header/>
                     <div className="container-fluid">
-                        <div className="col-md-12 movie-dates">
+                        <div className="col-md-12 movie--dates">
                             <h1>{this.state.movie.Title}</h1>
-                            <div className="movie-thumbnail col-md-4" style={{backgroundImage: 'url('+this.state.movie.Poster+')'}}>
+                            <div className="movie--thumbnail col-md-4" style={{backgroundImage: 'url('+this.state.movie.Poster+')'}}>
                             </div>
                             <MovieTable movie={this.state.movie}/>
                         </div>
-                        <MovieComments source={"/api/details/comments/"+this.props.params.movieId} movieId={this.props.params.movieId}/>
+                        <MovieComments movieId={this.props.params.movieId}/>
                     </div>
                 </div>
         );

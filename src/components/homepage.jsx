@@ -8,9 +8,9 @@ export class Homepage extends React.Component {
             <div className="home">
                 <Header></Header>
                 <div className="container-fluid">
-                    <div className="col-md-12 movies-list">
+                    <div className="col-md-12 movies--list">
                         <h1>Popular Releases</h1>
-                        <MovieList source="/api/home/movie-list"/>
+                        <MovieList/>
                     </div>
                 </div>
             </div>

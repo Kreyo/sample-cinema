@@ -31,7 +31,7 @@ export class CommentForm extends React.Component {
 
     renderForm() {
         return (
-            <form className="form-comment" onSubmit={this.addComment.bind(this)}>
+            <form className="form--comment" onSubmit={this.addComment.bind(this)}>
                     <textarea id="inputBody" className="form-control"
                               placeholder="Enter your comment here.." required="" onChange={this.setBody.bind(this)}></textarea>
                 <button className="btn btn-lg btn-primary btn-block" type="submit" >Comment</button>
@@ -39,11 +39,10 @@ export class CommentForm extends React.Component {
         );
     }
 
-
     render() {
         let services = new Services();
         return(
-            <div className="form-comment">
+            <div className="form--comment">
                 <h3>Add your comment</h3>
                 {services.getCookie('email') ?
                     this.renderForm() :

@@ -6,7 +6,7 @@ export class About extends React.Component {
         return(
             <div className="about">
                 <Header/>
-                <div className="container static-container">
+                <div className="container static--container">
                     <h1>About Us</h1>
                     <p className="about-content">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.

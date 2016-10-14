@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import {Header} from '../parts/header';
 import { Link, browserHistory } from "react-router"
+import {UserApi} from './user-api';
 
 export class Login extends React.Component {
 
@@ -28,28 +28,32 @@ export class Login extends React.Component {
 
     login(event) {
         event.preventDefault();
-        axios.post('/api/user/login',
-            {
-                'email': this.state.email,
-                'password': this.state.password
-            })
-            .then((result) => {
+        let api = new UserApi();
+        let data = {
+            'email': this.state.email,
+            'password': this.state.password
+        };
+
+        api.login(
+            data,
+            (result) => {
                 browserHistory.push('/');
-            })
-            .catch( (error) => {
+            },
+            (error) => {
                 this.setState({
                     loginFailed: true
                 });
-            });
+            }
+        );
     }
 
     render() {
         return(
             <div className="login">
                 <Header/>
-                <div className="container static-container">
+                <div className="container static--container">
                     {this.state.loginFailed ?  <div className="alert alert-danger">Email or password incorrect!</div> : ''}
-                    <form className="form-signin" onSubmit={this.login.bind(this)}>
+                    <form className="form--signin" onSubmit={this.login.bind(this)}>
                         <h1 className="form-signin-heading">Sign in</h1>
                         <label className="sr-only">Email address</label>
                         <input id="inputEmail" className="form-control" placeholder="Email address" required="" type="email"

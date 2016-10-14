@@ -2,22 +2,27 @@ body {
     height: 100%;
 }
 
+h1 {
+    text-align: center;
+    margin: 40px;
+}
+
 #root {
     background-color: #BADA55;
     min-height: 100%;
 }
 
-.movies-list {
+.movies--list {
     background-color: #fff;
     border-radius: 5px;
 }
 
-.static-container, .login-container, .movie-dates {
+.static--container, .login--container, .movie--dates {
     background-color: #fff;
     border-radius: 5px;
     padding: 40px;
 }
-.form-signin {
+.form--signin {
     width: 350px;
     display: block;
     margin: 0 auto;
@@ -32,12 +37,7 @@ a.active {
     font-weight: 600;
 }
 
-h1 {
-    text-align: center;
-    margin: 40px;
-}
-
-.movie-thumbnail {
+.movie--thumbnail {
     background-size: cover;
     background-position: center center;
     width: 260px;
@@ -56,12 +56,12 @@ h1 {
 
 @media (min-width: 800px) {
 
-    .movie-data em {
+    .movie--data em {
         display: block;
         text-align: center;
     }
 
-    .movie-data p {
+    .movie--data p {
         text-align: center;
         color: #000;
         font-size: 22px;
@@ -69,17 +69,17 @@ h1 {
     }
 }
 
-.movie-data em {
+.movie--data em {
     display: block;
     text-align: center;
 }
 
-.movie-data p {
+.movie--data p {
     text-align: center;
 }
 
 @media (max-width: 450px) {
-    .movie-thumbnail {
+    .movie--thumbnail {
         width: 180px;
         height: 300px;
         margin-bottom: 20px;
@@ -89,7 +89,7 @@ h1 {
     }
 }
 
-.movie-comments {
+.movie--comments {
     background-color: #fff;
     margin: 20px 0;
     border-radius: 5px;
@@ -106,6 +106,6 @@ h1 {
     padding: 10px;
 }
 
-.form-comment textarea, .form-comment button {
+.form--comment textarea, .form--comment button {
     border-radius: 0;
 }

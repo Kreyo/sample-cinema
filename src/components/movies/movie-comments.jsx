@@ -1,7 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import {MovieComment} from './movie-comment';
 import {CommentForm} from './movie-add-comment';
+import {MovieApi} from './movie-api';
 
 export class MovieComments extends React.Component {
 
@@ -17,13 +17,12 @@ export class MovieComments extends React.Component {
     }
 
     fetchComments() {
-        axios.get(this.props.source)
-            .then((result) => {
-                this.setState({
-                    comments: result.data
-                });
-            }).catch(function (error) {
-            console.log(error);
+        let api = new MovieApi();
+
+        api.getCommentList(this.props.movieId, (result) => {
+            this.setState({
+                comments: result.data
+            });
         });
     }
 
@@ -37,19 +36,20 @@ export class MovieComments extends React.Component {
     }
 
     addComment(body, id) {
-        axios.post('/api/details/comments',
-            {
-                'body': body,
-                'movieId': id
-            })
-            .then((result) => {
-                this.fetchComments();
-            });
+        let api = new MovieApi();
+        let data = {
+            'body': body,
+            'movieId': id
+        };
+
+        api.addComment(data, (result) => {
+            this.fetchComments();
+        });
     }
 
     render() {
         return(
-            <div className="movie-comments col-md-12">
+            <div className="movie--comments col-md-12">
                 <h3>User comments</h3>
                 {this.state.comments.length >= 1
                     ? this.renderCommentList()

@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import {MovieThumbnail} from './movie-thumbnail';
+import {MovieApi} from './movie-api';
 
 export class MovieList extends React.Component {
 
@@ -10,15 +10,13 @@ export class MovieList extends React.Component {
             movies : []
         };
     }
-
     componentDidMount() {
-        axios.get(this.props.source)
-            .then((result) => {
-                this.setState({
-                    movies: result.data
-                });
-            }).catch(function (error) {
-            console.log(error);
+
+        let api = new MovieApi();
+        api.getMoviesList((result) => {
+            this.setState({
+                movies: result.data
+            });
         });
     }
 
