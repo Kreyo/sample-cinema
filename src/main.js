@@ -14,12 +14,14 @@ import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import {cinemaApp} from './reducers'
+import devToolsEnhancer from 'remote-redux-devtools';
 
 const store = createStore(
     combineReducers({
             cinemaApp,
             routing: routerReducer
-    })
+    }),
+    devToolsEnhancer({ realtime: true })
 );
 
 const history = syncHistoryWithStore(browserHistory, store);

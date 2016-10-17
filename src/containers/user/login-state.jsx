@@ -4,10 +4,11 @@ import {Login} from '../../components/user/login'
 
 
 const mapStateToProps = (state) => {
+
     return {
-        email: state.email,
-        password: state.password,
-        loginFailed: state.loginFailed
+        email: state.cinemaApp.loginState.email,
+        password: state.cinemaApp.loginState.password,
+        loginFailed: state.cinemaApp.loginState.loginFailed
     }
 };
 

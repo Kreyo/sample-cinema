@@ -37,6 +37,7 @@
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "chai": "^3.2.0",
-    "chai-http": "^1.0.0"
+    "chai-http": "^1.0.0",
+    "remote-redux-devtools": "^0.5.0"
   }
 }
