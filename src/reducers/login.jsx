@@ -1,4 +1,4 @@
-export const loginState = (state = [], action) => {
+export const loginState = (state = {'loginFailed': false, 'email': '', 'password': ''}, action) => {
     switch (action.type) {
         case 'LOGIN_STATE_FAILED':
             return Object.assign({}, state, {
@@ -11,7 +11,7 @@ export const loginState = (state = [], action) => {
 
         case 'LOGIN_EMAIL':
             return Object.assign({}, state, {
-                email: action.email
+                'email': action.email
             });
 
         case 'LOGIN_PASSWORD':
