@@ -2,6 +2,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../index');
 var should = chai.should();
+var reactUtils = require('react-addons-test-utils');
 
 chai.use(chaiHttp);
 
@@ -18,4 +19,5 @@ it('should list ALL movies on / GET', function(done) {
             res.should.have.status(200);
             done();
         });
+
 });
