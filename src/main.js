@@ -8,7 +8,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import {Ads} from './components/static/ads';
 import {Terms} from './components/static/terms';
 import {About} from './components/static/about';
-import {UserProfile} from './components/user/profile';
+import {ProfileState} from './containers/user/profile-state';
 import {Logout} from './components/user/logout';
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
@@ -32,7 +32,7 @@ ReactDOM.render((
                 <Route path="/" component={Homepage}/>
                 <Route path="/login" component={LoginState}/>
                 <Route path="/register" component={RegisterState}/>
-                <Route path="/profile" component={UserProfile}/>
+                <Route path="/profile" component={ProfileState}/>
                 <Route path="/movie/:movieId" component={MovieDetailsState}/>
                 <Route path="/logout" component={Logout}/>
                 <Route path="/about" component={About}/>

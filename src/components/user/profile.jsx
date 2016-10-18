@@ -2,23 +2,16 @@ import React from 'react';
 import {Header} from '../parts/header';
 import {profile} from './user-api';
 import {getCookie} from '../utility/services';
+import {Link} from 'react-router';
 
 export class UserProfile extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            profile: []
-        };
-    }
 
     componentDidMount() {
         const email = decodeURIComponent(getCookie('email'));
 
         profile(email, (result) => {
-            this.setState({
-                profile: result.data
-            });
+            this.props.setProfile(result.data);
+
         });
     }
 
@@ -29,7 +22,9 @@ export class UserProfile extends React.Component {
                 <div className="container-fluid">
                     <div className="col-md-12 user__data">
                         <h1>Your profile</h1>
-                        <p>Email:</p><p>{this.state.profile.email}</p>
+                        <p className="text-center">Email:</p><p className="text-center">{this.props.profile.email}</p>
+                        <h3>Your favorite movies</h3>
+                        {/*{Possible favorites list here}*/}
                     </div>
                 </div>
             </div>
