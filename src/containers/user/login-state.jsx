@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setLoginState, setLoginEmail, setLoginPassword } from '../../actions'
+import { setLoginState, setLoginEmail, setLoginPassword } from '../../actions/user/login'
 import {Login} from '../../components/user/login'
 
 

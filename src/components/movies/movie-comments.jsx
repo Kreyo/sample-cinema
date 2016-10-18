@@ -1,17 +1,9 @@
 import React from 'react';
 import {MovieComment} from './movie-comment';
-import {CommentForm} from './movie-add-comment';
+import {AddCommentState} from '../../containers/movies/movie-add-comment';
 import {getCommentList, addComment, removeComment} from './movie-api';
 
 export class MovieComments extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            comments : []
-        }
-    }
-
     componentDidMount() {
         this.fetchComments();
     }
@@ -19,16 +11,14 @@ export class MovieComments extends React.Component {
     fetchComments() {
 
         getCommentList(this.props.movieId, (result) => {
-            this.setState({
-                comments: result.data
-            });
+            this.props.setComments(result.data);
         });
     }
 
     renderCommentList() {
 
         return(
-            this.state.comments.map((comment) => (
+            this.props.comments.map((comment) => (
                 <MovieComment comment={comment} key={comment._id} removeComment={this.removeComment.bind(this)}/>
             ))
         );
@@ -56,10 +46,10 @@ export class MovieComments extends React.Component {
         return(
             <div className="movie__comments col-md-12">
                 <h3>User comments</h3>
-                {this.state.comments.length >= 1
+                {this.props.comments.length >= 1
                     ? this.renderCommentList()
                     : <p>Whoops, looks like no comments here yet. Why not leave one?</p>}
-                <CommentForm addComment={this.addComment.bind(this)} movieId={this.props.movieId}/>
+                <AddCommentState addComment={this.addComment.bind(this)} movieId={this.props.movieId}/>
             </div>
         );
     }

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Homepage} from './components/pages/homepage.jsx';
-import {Details} from './components/pages/details';
+import {MovieDetailsState} from './containers/pages/details';
 import {LoginState} from './containers/user/login-state';
-import {Register} from './components/user/register';
+import {RegisterState} from './containers/user/register-state';
 import { Router, Route, browserHistory } from 'react-router';
 import {Ads} from './components/static/ads';
 import {Terms} from './components/static/terms';
@@ -31,9 +31,9 @@ ReactDOM.render((
           <Router history={history}>
                 <Route path="/" component={Homepage}/>
                 <Route path="/login" component={LoginState}/>
-                <Route path="/register" component={Register}/>
+                <Route path="/register" component={RegisterState}/>
                 <Route path="/profile" component={UserProfile}/>
-                <Route path="/movie/:movieId" component={Details}/>
+                <Route path="/movie/:movieId" component={MovieDetailsState}/>
                 <Route path="/logout" component={Logout}/>
                 <Route path="/about" component={About}/>
                 <Route path="/terms" component={Terms}/>

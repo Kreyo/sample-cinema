@@ -4,28 +4,18 @@ import {getCookie} from '../utility/services';
 
 export class CommentForm extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            commentBody: ''
-        }
-    }
-
     setBody(event) {
-        this.setState({
-            commentBody : event.target.value
-        });
+        this.props.setCommentBody(event.target.value);
     }
 
     addComment(event) {
         event.preventDefault();
 
-        if (this.state.commentBody != '') {
-            this.props.addComment(this.state.commentBody, this.props.movieId);
+        if (this.props.commentBody != '') {
+            this.props.addComment(this.props.commentBody, this.props.movieId);
 
-            this.setState({
-                commentBody: ''
-            });
+            document.getElementById('inputBody').value = '';
+            this.props.setCommentBody('');
         }
     }
 

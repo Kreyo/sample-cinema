@@ -1,6 +1,6 @@
 import React from 'react';
 import {Header} from '../parts/header';
-import {MovieList} from '../movies/movie-list';
+import {MovieListState} from '../../containers/movies/movie-list';
 
 export class Homepage extends React.Component {
     render() {
@@ -10,7 +10,7 @@ export class Homepage extends React.Component {
                 <div className="container-fluid">
                     <div className="col-md-12 movies__list">
                         <h1>Popular Releases</h1>
-                        <MovieList/>
+                        <MovieListState/>
                     </div>
                 </div>
             </div>
