@@ -5,3 +5,10 @@ export const setMovie = (movie) => {
     }
 };
 
+export const setFavorite = (favorite) => {
+    return {
+        type: 'MOVIE_FAVORITE',
+        favorite
+    }
+};
+

@@ -15,7 +15,7 @@ export class CommentForm extends React.Component {
             this.props.addComment(this.props.commentBody, this.props.movieId);
 
             document.getElementById('inputBody').value = '';
-            this.props.setCommentBody('');
+            event.target.value = "";
         }
     }
 

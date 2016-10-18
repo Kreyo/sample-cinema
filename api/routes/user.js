@@ -62,4 +62,18 @@ router.get('/logout', function(req, res) {
     });
 });
 
+router.post('/movie-like', jsonParser, function (req, res) {
+    let connection = req.app.locals.connection;
+    connection.likeMovie(req.body, (result) => {
+        res.sendStatus(200);
+    });
+});
+
+router.post('/movie-unlike', jsonParser, function (req, res) {
+    let connection = req.app.locals.connection;
+    connection.unlikeMovie(req.body, (result) => {
+        res.sendStatus(200);
+    });
+});
+
 module.exports = router;

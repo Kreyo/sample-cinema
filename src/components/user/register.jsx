@@ -20,7 +20,8 @@ export class Register extends React.Component {
     postRegisterData() {
         const data =  {
             'email': this.props.email,
-            'password': this.props.password
+            'password': this.props.password,
+            'favorites': []
         };
         register(
             data,

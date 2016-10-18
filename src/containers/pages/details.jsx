@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
-import { setMovie } from '../../actions/movie/movie-details'
+import { setMovie, setFavorite } from '../../actions/movie/movie-details'
 import {Details} from '../../components/pages/details'
 
 
 const mapStateToProps = (state) => {
 
     return {
-        movie: state.cinemaApp.movieDetailsState.movie
+        movie: state.cinemaApp.movieDetailsState.movie,
+        favorite: state.cinemaApp.movieDetailsState.favorite
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setMovie: (movie) => dispatch(setMovie(movie))
+        setMovie: (movie) => dispatch(setMovie(movie)),
+        setFavorite: (favorite) => dispatch(setFavorite(favorite))
     };
 };
 

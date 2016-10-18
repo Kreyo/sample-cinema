@@ -3,6 +3,8 @@ import axios from 'axios';
 const loginURL = '/api/user/login';
 const registerURL = '/api/user/register';
 const profileURL = '/api/user/profile';
+const likeURL = '/api/user/movie-like';
+const unlikeURL = '/api/user/movie-unlike';
 
 export const register = (data, successCallback, errorCallback) => {
 
@@ -31,4 +33,18 @@ export const profile = (email, callback) => {
         .then((result) => {
             callback(result);
         });
+};
+
+export const like = (data, callback) => {
+    console.log(data);
+    axios.post(likeURL, data).then((result) => {
+        callback(result);
+    });
+};
+
+
+export const unlike = (data, callback) => {
+    axios.post(unlikeURL, data).then((result) => {
+        callback(result);
+    });
 };

@@ -77,6 +77,36 @@ class Connector {
         });
     }
 
+    likeMovie(data, callback) {
+        this.connect((db) => {
+            db.collection('users').updateOne(
+                {
+                    'email': data.email,
+                },
+                {
+                    $push: { 'favorites': data.movieId }
+                }
+            ).then((result) => {
+                callback(result);
+            });
+        });
+    }
+
+    unlikeMovie(data, callback) {
+        this.connect((db) => {
+            db.collection('users').updateOne(
+                {
+                    'email': data.email,
+                },
+                {
+                    $pull: { 'favorites': data.movieId }
+                }
+            ).then((result) => {
+                callback(result)
+            });
+        });
+    }
+
 ////Sessions
 
     createSession(userId, callback) {
