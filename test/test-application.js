@@ -23,6 +23,6 @@ describe('<Terms />', () => {
 describe('<About />', () => {
     it('should contain static text', () => {
         const wrapper = shallow(<About />);
-        expect(wrapper.contains(<h1>About</h1>)).to.equal(true);
+        expect(wrapper.contains(<h1>About Us</h1>)).to.equal(true);
     });
 });
