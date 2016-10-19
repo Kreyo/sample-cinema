@@ -1,4 +1,5 @@
 # Sample online cinema application
+[![Build Status](https://travis-ci.org/Kreyo/sample-cinema.svg?branch=master)](https://travis-ci.org/Kreyo/sample-cinema)
 ## Installation
 - git clone https://github.com/Kreyo/sample-cinema.git
 - go to the folder containing the cloned code
