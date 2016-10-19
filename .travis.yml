@@ -10,4 +10,4 @@ before_script:
   - npm install -g mocha
 script:
   - webpack
-  - mocha --compilers js:babel-core/register
+  - mocha --compilers js:babel-core/register --recursive
