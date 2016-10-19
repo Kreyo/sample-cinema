@@ -4,3 +4,9 @@ node_js:
   - "6.1"
   - "5.11"
   - "0.6"
+services: mongodb
+before_script:
+  - npm install
+  - npm install -g webpack
+script:
+  - webpack
