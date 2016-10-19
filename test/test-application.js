@@ -35,7 +35,7 @@ describe('<MovieList/>', () => {
         const store = mockStore(initialState);
         sinon.spy(MovieListState.prototype, 'componentDidMount');
         const wrapper = mount(<Provider store={store}><MovieListState /></Provider>);
-        expect(<MovieListState></MovieListState>.prototype.componentDidMount.calledOnce).to.equal(true);
+        expect(MovieListState.prototype.componentDidMount.calledOnce).to.equal(true);
     });
 });
 
