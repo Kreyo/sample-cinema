@@ -1,23 +1,28 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('../index');
-var should = chai.should();
-var reactUtils = require('react-addons-test-utils');
+import 'babel-polyfill';
+import { mount, shallow } from 'enzyme';
+import React from 'react';
+import {Homepage} from '../src/components/pages/homepage';
+import {Terms} from '../src/components/static/terms';
+import {About} from '../src/components/static/about';
+import { expect } from 'chai';
 
-chai.use(chaiHttp);
-
-describe('Movies', function() {
-    it('should list ALL movies on / GET');
-    it('should list a SINGLE movie on /movie/<id> GET');
+describe('<Homepage />', () => {
+    it('should have popular releases', () => {
+        const wrapper = shallow(<Homepage />);
+        expect(wrapper.contains(<h1>Popular Releases</h1>)).to.equal(true);
+    });
 });
 
+describe('<Terms />', () => {
+    it('should contain static text', () => {
+        const wrapper = shallow(<Terms />);
+        expect(wrapper.contains(<h1>Terms and Conditions</h1>)).to.equal(true);
+    });
+});
 
-it('should list ALL movies on / GET', function(done) {
-    chai.request(server)
-        .get('/ ')
-        .end(function(err, res){
-            res.should.have.status(200);
-            done();
-        });
-
+describe('<About />', () => {
+    it('should contain static text', () => {
+        const wrapper = shallow(<About />);
+        expect(wrapper.contains(<h1>About</h1>)).to.equal(true);
+    });
 });
