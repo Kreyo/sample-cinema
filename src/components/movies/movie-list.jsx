@@ -1,6 +1,6 @@
 import React from 'react';
-import {MovieThumbnail} from './movie-thumbnail';
 import {getMoviesList} from './movie-api';
+import {MovieGrid} from './movie-grid';
 
 export class MovieList extends React.Component {
 
@@ -13,13 +13,7 @@ export class MovieList extends React.Component {
 
     render() {
         return(
-            <div className="movies">
-                {this.props.movies.map((movie) => (
-                    <div className="col-md-4" key={movie._id}>
-                        <MovieThumbnail name={movie.Title} id={movie._id} image={movie.Poster} date={movie.Year}/>
-                    </div>
-                ))}
-            </div>
+            <MovieGrid movies={this.props.movies}/>
         );
     }
 }

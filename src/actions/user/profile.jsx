@@ -4,3 +4,10 @@ export const setProfile = (profile) => {
         profile
     }
 };
+
+export const setFavorites = (favorites) => {
+    return {
+        type: 'FAVORITES_FETCHED',
+        favorites
+    }
+};

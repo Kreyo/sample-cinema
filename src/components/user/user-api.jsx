@@ -5,6 +5,7 @@ const registerURL = '/api/user/register';
 const profileURL = '/api/user/profile';
 const likeURL = '/api/user/movie-like';
 const unlikeURL = '/api/user/movie-unlike';
+const favoritesUrl = '/api/user/user-favorites';
 
 export const register = (data, successCallback, errorCallback) => {
 
@@ -45,6 +46,12 @@ export const like = (data, callback) => {
 
 export const unlike = (data, callback) => {
     axios.post(unlikeURL, data).then((result) => {
+        callback(result);
+    });
+};
+
+export const favorites = (callback) => {
+    axios.get(favoritesUrl).then((result) => {
         callback(result);
     });
 };

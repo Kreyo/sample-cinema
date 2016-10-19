@@ -48,6 +48,14 @@ class Connector {
         });
     }
 
+    fetchMoviesByFavorites (favorites, callback) {
+        this.connect((db) => {
+            db.collection('movies').find( { '_id': {$in : favorites} } ).toArray().then((result) => {
+                callback(result);
+            });
+        });
+    }
+
 ////Users
 
     fetchUserByEmail(email, callback) {

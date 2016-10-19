@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var sha256 = require('js-sha256');
-
+var ObjectId = require('mongodb').ObjectId;
 var jsonParser = bodyParser.json();
 
 router.post('/login', jsonParser, function (req, res) {
@@ -73,6 +73,22 @@ router.post('/movie-unlike', jsonParser, function (req, res) {
     let connection = req.app.locals.connection;
     connection.unlikeMovie(req.body, (result) => {
         res.sendStatus(200);
+    });
+});
+
+router.get('/user-favorites', function (req, res) {
+    let connection = req.app.locals.connection;
+    connection.fetchUserByEmail(req.cookies.email, (result) => {
+
+        const favs = result.favorites;
+        let modifiedFavs = [];
+        for (let key = 0; key < favs.length; key++ ) {
+            modifiedFavs.push(ObjectId(favs[key]));
+        }
+
+        connection.fetchMoviesByFavorites(modifiedFavs, (movieResult) => {
+            res.send(movieResult);
+        })
     });
 });
 
