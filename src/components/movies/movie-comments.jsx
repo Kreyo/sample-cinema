@@ -4,8 +4,16 @@ import {AddCommentState} from '../../containers/movies/movie-add-comment';
 import {getCommentList, addComment, removeComment} from './movie-api';
 
 export class MovieComments extends React.Component {
+
     componentDidMount() {
         this.fetchComments();
+        var socket = io.connect(this.props.location);
+        socket.on('comments:updated', (data) => {
+            if (data.movieId == this.props.movieId) {
+                this.fetchComments();
+            }
+        });
+
     }
 
     fetchComments() {

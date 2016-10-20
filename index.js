@@ -40,8 +40,19 @@ app.use(function(req, res) {
     res.sendFile(path.resolve(__dirname + '/dist/index.html'));
 });
 
-app.listen(3000, function () {
+const server = app.listen(3000, function () {
     console.log('Super cinema app listening on port 3000!');
+});
+
+/**
+ * Socket.io binding for comment sections
+ */
+var io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+    socket.on('comment:added', function (data) {
+        socket.broadcast.emit('comments:updated', data);
+    });
 });
 
 module.exports = app;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from "react-router"
 import {getCookie} from '../utility/services';
-
 export class CommentForm extends React.Component {
 
     setBody(event) {
@@ -12,8 +11,15 @@ export class CommentForm extends React.Component {
         event.preventDefault();
 
         if (this.props.commentBody != '') {
-            this.props.addComment(this.props.commentBody, this.props.movieId);
+            var socket = io.connect(this.props.location);
+            socket.emit('comment:added', {
+                body: this.props.commentBody,
+                user: getCookie('email'),
+                date: new Date(),
+                movieId: this.props.movieId
+            });
 
+            this.props.addComment(this.props.commentBody, this.props.movieId);
             document.getElementById('inputBody').value = '';
             event.target.value = "";
         }
