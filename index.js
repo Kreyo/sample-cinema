@@ -47,7 +47,7 @@ const server = app.listen(3000, function () {
 /**
  * Socket.io binding for comment sections
  */
-var io = require('socket.io')(server);
+const io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
     socket.on('comment:added', function (data) {

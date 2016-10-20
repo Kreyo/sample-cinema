@@ -13,9 +13,11 @@
 
 ## Features
 - Movie list and details
+- Like\Dislike
 - Several static pages
 - Authorization and Registration
-- Comment feature
+- Profile page witl movie list
+- Commenting\remove comment feature
 
 ## Technology stack
 - Node.js
@@ -24,3 +26,8 @@
 - React-router for template generation
 - Mocha and Chai for unit testing
 - Moment.js for date formatting
+- Socket.io for comment section update
+
+## Preview
+![movie list](http://prntscr.com/cwppjo)
+![movie_details](http://prntscr.com/cwpq80)
