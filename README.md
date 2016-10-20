@@ -29,5 +29,5 @@
 - Socket.io for comment section update
 
 ## Preview
-![movie list](http://prntscr.com/cwppjo)
-![movie_details](http://prntscr.com/cwpq80)
+![movie list](http://image.prntscr.com/image/2bb283193d7546769b541088a30210c2.png)
+![movie_details](http://image.prntscr.com/image/a75ae8a26e87404b93d57666c09a2e9b.png)
