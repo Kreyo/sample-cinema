@@ -13,9 +13,6 @@ export class CommentForm extends React.Component {
         if (this.props.commentBody != '') {
             var socket = io.connect(this.props.location);
             socket.emit('comment:added', {
-                body: this.props.commentBody,
-                user: getCookie('email'),
-                date: new Date(),
                 movieId: this.props.movieId
             });
 

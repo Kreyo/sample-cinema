@@ -53,6 +53,9 @@ io.on('connection', function (socket) {
     socket.on('comment:added', function (data) {
         socket.broadcast.emit('comments:updated', data);
     });
+    socket.on('comment:removed', function (data) {
+        socket.broadcast.emit('comments:updated', data);
+    });
 });
 
 module.exports = app;

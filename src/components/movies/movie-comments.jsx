@@ -13,7 +13,6 @@ export class MovieComments extends React.Component {
                 this.fetchComments();
             }
         });
-
     }
 
     fetchComments() {
@@ -47,6 +46,10 @@ export class MovieComments extends React.Component {
 
         removeComment(id, (result) => {
             this.fetchComments();
+            var socket = io.connect(this.props.location);
+            socket.emit('comment:removed', {
+                movieId: this.props.movieId
+            });
         });
     }
 
