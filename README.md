@@ -29,5 +29,7 @@
 - Socket.io for comment section update
 
 ## Preview
+### Movie list
 ![movie list](http://image.prntscr.com/image/2bb283193d7546769b541088a30210c2.png)
+### Movie details
 ![movie_details](http://image.prntscr.com/image/a75ae8a26e87404b93d57666c09a2e9b.png)
