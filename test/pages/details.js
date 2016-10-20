@@ -1,11 +1,11 @@
 import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {MovieTable} from '../../src/components/movies/movie-table';
+import {Details} from '../../src/components/pages/details';
 import { expect } from 'chai';
 
-describe('<MovieTable />', () => {
-    it('should have year of the movie', () => {
+describe('<Details />', () => {
+    it('should have a movie name', () => {
         const movie = {
             "Title" : "The Lord of the Rings: The Fellowship of the Ring",
             "Year" : "2001",
@@ -28,7 +28,12 @@ describe('<MovieTable />', () => {
             "Type" : "movie",
             "Response" : "True"
         };
-        const wrapper = shallow(<MovieTable movie={movie} />);
-        expect(wrapper.contains(<td>Year of release</td>)).to.equal(true);
+
+        const params = {
+            movieId: 1
+        };
+
+        const wrapper = shallow(<Details movie={movie} favorite={false} setMovie={() => {}} setFavorite={() => {}} params={params} />);
+        expect(wrapper.contains(`The Lord of the Rings: The Fellowship of the Ring`)).to.equal(true);
     });
 });

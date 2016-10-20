@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
 import { expect } from 'chai';
 import {About} from '../../src/components/static/about';
