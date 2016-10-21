@@ -15,6 +15,7 @@ h1 {
 .movies__list {
     background-color: #fff;
     border-radius: 5px;
+    padding: 15px;
 }
 
 .static__container, .login__container, .movie__dates, .user__data {
@@ -22,6 +23,7 @@ h1 {
     border-radius: 5px;
     padding: 40px;
 }
+
 .form__signin {
     width: 350px;
     display: block;
@@ -54,21 +56,6 @@ a.active {
     margin-bottom: 20px;
 }
 
-@media (min-width: 800px) {
-
-    .movie__data em {
-        display: block;
-        text-align: center;
-    }
-
-    .movie__data p {
-        text-align: center;
-        color: #000;
-        font-size: 22px;
-        font-weight: bold;
-    }
-}
-
 .movie__data em {
     display: block;
     text-align: center;
@@ -76,17 +63,8 @@ a.active {
 
 .movie__data p {
     text-align: center;
-}
-
-@media (max-width: 450px) {
-    .movie__thumbnail {
-        width: 180px;
-        height: 300px;
-        margin-bottom: 20px;
-    }
-    .movie {
-        height: 450px;
-    }
+    color: #000;
+    font-weight: bold;
 }
 
 .movie__comments {
@@ -108,4 +86,49 @@ a.active {
 
 .form__comment textarea, .form__comment button {
     border-radius: 0;
+}
+
+@media (min-width: 800px) {
+
+    .movie__data em {
+        display: block;
+    }
+
+    .movie__data p {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 775px) {
+    .navbar li {
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 565px) {
+    h1 {
+        font-size: 22px;
+        line-height: 26px;
+        margin: 20px;
+    }
+
+    .static__container, .login__container, .movie__dates, .user__data {
+        padding: 20px;
+    }
+
+    .form__signin {
+        width: inherit;
+    }
+}
+
+@media (max-width: 450px) {
+    .movie__thumbnail {
+        width: 180px;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+    .movie {
+        height: 450px;
+    }
 }
