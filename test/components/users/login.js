@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {Login} from '../../src/components/user/login';
+import {Login} from '../../../src/components/user/login';
 import { expect } from 'chai';
 
 describe('<Login />', () => {

@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {MovieTable} from '../../src/components/movies/movie-table';
+import {MovieTable} from '../../../src/components/movies/movie-table';
 import { expect } from 'chai';
 
 const movie = {

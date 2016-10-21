@@ -1,9 +1,11 @@
-let MongoClient = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectId;
+const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 
-/**
- * TODO: Move separate collections functions to separate files!
- */
+const moviesCollection = 'movies';
+const userCollection = 'users';
+const sessionCollection = 'sessions';
+const commentCollection = 'comments';
+
 class Connector {
     constructor (host = 'localhost', port = '27017', database)  {
         this.host = host;
@@ -32,7 +34,7 @@ class Connector {
 
     fetchMovies (callback) {
         this.connect((db) => {
-            db.collection('movies').find().toArray().then((result) => {
+            db.collection(moviesCollection).find().toArray().then((result) => {
                 callback(result);
             });
         });
@@ -42,7 +44,7 @@ class Connector {
 
         this.connect((db) => {
 
-            db.collection('movies').findOne( { '_id': ObjectId(id) } ).then((result) => {
+            db.collection(moviesCollection).findOne( { '_id': ObjectId(id) } ).then((result) => {
                 callback(result);
             });
         });
@@ -50,7 +52,7 @@ class Connector {
 
     fetchMoviesByFavorites (favorites, callback) {
         this.connect((db) => {
-            db.collection('movies').find( { '_id': {$in : favorites} } ).toArray().then((result) => {
+            db.collection(moviesCollection).find( { '_id': {$in : favorites} } ).toArray().then((result) => {
                 callback(result);
             });
         });
@@ -61,7 +63,7 @@ class Connector {
     fetchUserByEmail(email, callback) {
 
         this.connect((db) => {
-            db.collection('users').findOne( { 'email': email } ).then((result) => {
+            db.collection(userCollection).findOne( { 'email': email } ).then((result) => {
                 callback(result);
             });
         });
@@ -73,7 +75,7 @@ class Connector {
             let salt = Math.random().toString(36).substring(7);
             var sha256 = require('js-sha256');
 
-            db.collection('users').insertOne(
+            db.collection(userCollection).insertOne(
                 {
                     'email': data.email,
                     'salt': salt,
@@ -87,7 +89,7 @@ class Connector {
 
     likeMovie(data, callback) {
         this.connect((db) => {
-            db.collection('users').updateOne(
+            db.collection(userCollection).updateOne(
                 {
                     'email': data.email,
                 },
@@ -102,7 +104,7 @@ class Connector {
 
     unlikeMovie(data, callback) {
         this.connect((db) => {
-            db.collection('users').updateOne(
+            db.collection(userCollection).updateOne(
                 {
                     'email': data.email,
                 },
@@ -119,7 +121,7 @@ class Connector {
 
     createSession(userId, callback) {
         this.connect((db) => {
-            db.collection('sessions').insertOne(
+            db.collection(sessionCollection).insertOne(
                 {
                     'userId': userId,
                     'startDate': new Date()
@@ -133,7 +135,7 @@ class Connector {
     validateSessionByUser(userId, callback) {
         this.connect((db) => {
 
-            db.collection('sessions').findOne( { 'userId': ObjectId(userId) } ).then((result) => {
+            db.collection(sessionCollection).findOne( { 'userId': ObjectId(userId) } ).then((result) => {
                 callback(result);
             });
         });
@@ -142,7 +144,7 @@ class Connector {
     validateSession(sessionId, callback) {
         this.connect((db) => {
 
-            db.collection('sessions').findOne( { '_id': ObjectId(sessionId) } ).then((result) => {
+            db.collection(sessionCollection).findOne( { '_id': ObjectId(sessionId) } ).then((result) => {
                 callback(result);
             });
         });
@@ -151,7 +153,7 @@ class Connector {
     removeSession(sessionId, callback) {
         this.connect((db) => {
 
-            db.collection('sessions').deleteOne( { '_id': ObjectId(sessionId) } ).then((result) => {
+            db.collection(sessionCollection).deleteOne( { '_id': ObjectId(sessionId) } ).then((result) => {
                 callback(result);
             });
         });
@@ -161,7 +163,7 @@ class Connector {
 
     addComment(comment, callback) {
         this.connect((db) => {
-            db.collection('comments').insertOne( comment ).then((result) => {
+            db.collection(commentCollection).insertOne( comment ).then((result) => {
                 callback(result);
             });
         });
@@ -170,7 +172,7 @@ class Connector {
     removeComment(commentId, callback) {
         this.connect((db) => {
 
-            db.collection('comments').deleteOne( { '_id': ObjectId(commentId) } ).then((result) => {
+            db.collection(commentCollection).deleteOne( { '_id': ObjectId(commentId) } ).then((result) => {
                 callback(result);
             });
         });
@@ -179,7 +181,8 @@ class Connector {
     fetchCommentsByMovie(movieId, callback) {
         this.connect((db) => {
 
-            db.collection('comments').find( { 'movieId': ObjectId(movieId) } ).sort({'date': -1}).toArray().then((result) => {
+            db.collection(commentCollection).find( { 'movieId': ObjectId(movieId) } )
+                .sort({'date': -1}).toArray().then((result) => {
                 callback(result);
             });
         });

@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {MovieThumbnail} from '../../src/components/movies/movie-thumbnail';
+import {MovieThumbnail} from '../../../src/components/movies/movie-thumbnail';
 import { expect } from 'chai';
 
 describe('<MovieThumbnail />', () => {

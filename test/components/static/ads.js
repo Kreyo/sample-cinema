@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { expect } from 'chai';
-import {Ads} from '../../src/components/static/ads';
+import {Ads} from '../../../src/components/static/ads';
 
 describe('<Ads />', () => {
     it('should be surprised', () => {

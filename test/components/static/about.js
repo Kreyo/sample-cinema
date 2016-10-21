@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { expect } from 'chai';
-import {About} from '../../src/components/static/about';
+import {About} from '../../../src/components/static/about';
 
 describe('<About />', () => {
     it('should contain static text', () => {

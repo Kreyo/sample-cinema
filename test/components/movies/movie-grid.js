@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import { shallow } from 'enzyme';
 import React from 'react';
-import {MovieGrid} from '../../src/components/movies/movie-grid';
+import {MovieGrid} from '../../../src/components/movies/movie-grid';
 import { expect } from 'chai';
 
 describe('<MovieGrid/>', () => {
