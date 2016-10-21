@@ -27,7 +27,12 @@ const movie =
         "Response" : "True"
     };
 
-describe("Testing details pate API with a mocked backend", function () {
+const comment = {
+    body: "I am a comment!",
+    movieId : "fake-id"
+};
+
+describe("Testing details page API with a mocked backend", function () {
     it("returns a single movie", function (done) {
 
         nock("http://localhost:3000")
@@ -44,5 +49,46 @@ describe("Testing details pate API with a mocked backend", function () {
 
                 done();
             });
+    });
+
+    it("has an array of comments", function (done) {
+
+        nock("http://localhost:3000")
+            .get('/api/details/comments/fake-id')
+            .reply(200, {
+                "comments": []
+            });
+
+        request
+            .get('/api/details/comments/fake-id')
+            .expect(200)
+            .end(function (err, res) {
+                expect(res.body.comments).to.be.an('array');
+
+                done();
+            });
+    });
+
+    it("can have another comment", function (done) {
+
+        nock("http://localhost:3000")
+            .post('/api/details/comments', comment)
+            .reply(200, {});
+
+        request
+            .post('/api/details/comments')
+            .send(comment)
+            .expect(200, done);
+    });
+
+    it("can have a comment removed", function (done) {
+
+        nock("http://localhost:3000")
+            .delete('/api/details/comments/comment-id')
+            .reply(200, {});
+
+        request
+            .delete('/api/details/comments/comment-id')
+            .expect(200, done);
     })
 });
