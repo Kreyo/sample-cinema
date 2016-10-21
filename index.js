@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
-var path = require('path');
+const path = require('path');
 
 app.use(cookieParser());
 
@@ -12,7 +12,7 @@ const databaseHost = 'localhost';
 const databasePort = '27017';
 const databaseName = 'movies';
 
-var mongo = require('./api/database/mongo');
+const mongo = require('./api/database/mongo');
 app.locals.connection = new mongo(databaseHost, databasePort, databaseName);
 
 app.use(express.static(__dirname + '/dist/'));
