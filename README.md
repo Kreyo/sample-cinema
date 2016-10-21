@@ -9,7 +9,7 @@
 - you can use the existing database dump from the dump folder
 - change the databaseHost, databasePort and databaseName parameters in index.js
 - enjoy your day! (or use node index.js and visit your localhost on port 3000) .
-- tests are available via Mocha - just run mocha command in the project folder, and it should run one sample test.
+- tests are available via Mocha - just run mocha command in the project folder, and it should run the test suite.
 
 ## Features
 - Movie list and details
