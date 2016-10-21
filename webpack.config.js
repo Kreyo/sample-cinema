@@ -23,6 +23,13 @@ module.exports = {
         filename: 'bundle.min.js'
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({minimize: true})
+        new webpack.optimize.UglifyJsPlugin(
+            {
+                minimize: true,
+                compress: {
+                    warnings: false
+
+                }
+            })
     ]
 }; 
