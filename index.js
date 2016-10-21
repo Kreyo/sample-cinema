@@ -35,6 +35,12 @@ app.use('/api/details', detailsRoutes);
 let usersRoutes = require('./api/routes/user');
 app.use('/api/user', usersRoutes);
 
+/**
+ * Fix for socket.io file serving - otherwise it would default to index.html
+ */
+app.get('/socket.io/socket.io.js', function(req, res) {
+    res.sendFile('/socket.io/socket.io.js');
+});
 
 app.use(function(req, res) {
     res.sendFile(path.resolve(__dirname + '/dist/index.html'));
